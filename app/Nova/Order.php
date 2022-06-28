@@ -120,8 +120,7 @@ class Order extends Resource
     public static function indexQuery(NovaRequest $request, $query): Builder
     {
         // Only show orders claimed by the User or unclaimed orders.
-        $userId = $request->user()->id;
-        return $query->whereNull('user_id')->orWhere('user_id', '=', $userId);
+        return $query->whereNull('user_id')->orWhere('user_id', '=', $request->user()->id);
     }
 
     /**
